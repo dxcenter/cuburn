@@ -257,7 +257,10 @@ def fill_dptr(mod, dptr, size, stream=None, value=np.uint32(0)):
         if isinstance(value, int):
             value = np.uint32(value)
         else:
-            value = np.frombuffer(buffer(value), np.uint32)[0]
+            try:
+                value = np.frombuffer(buffer(value), np.uint32)[0]
+            except:
+                value = np.uint32(value)
     blocks = int(np.ceil(np.sqrt(size / 1024.)))
     launch('fill_dptr', mod, stream, (1024, 1, 1), (blocks, blocks),
             dptr, np.int32(size), value)
