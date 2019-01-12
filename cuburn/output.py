@@ -91,7 +91,7 @@ class PILOutput(Output, ClsMod):
         import scipy.misc
         out = StringIO()
         img = scipy.misc.toimage(buf, cmin=0, cmax=1)
-        img.save(out, self.type, quality=self.quality)
+        img.save(out, self.type, quality=self.quality, compress_level=0)
         out.seek(0)
         return out
 
