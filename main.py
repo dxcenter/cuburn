@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env pypy
 #
 # cuburn, one of a surprisingly large number of ports of the fractal flame
 # algorithm to NVIDIA GPUs.

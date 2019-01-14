@@ -193,14 +193,14 @@ class X264Output(Output, ClsMod):
       { 'normal': '--profile high444 --level 4.2'
       , '': ''
       })
-    base = ('--no-progress --input-depth 16 --sync-lookahead 0 '
-            '--rc-lookahead 5 --muxer raw -o - - --log-level debug')
+    base = ('--no-progress --quiet --input-depth 16 --sync-lookahead 0 '
+            '--rc-lookahead 5 --muxer raw -o - -')
 
-    def __init__(self, profile='normal', csp='i444', crf=15,
-                 command='x264', x264opts='', alpha=False):
+    def __init__(self, profile='normal', csp='i444', crf=10,
+                 command='x264', fps=60, x264opts='', alpha=False):
         super(X264Output, self).__init__()
         self.args = ' '.join([command, self.base, self.profiles[profile],
-                              '--crf', str(crf), x264opts]).split()
+                              '--crf', str(crf), '--fps', str(fps), x264opts]).split()
         self.alpha = alpha
         self.csp = csp
         self.framesize = None
