@@ -194,7 +194,7 @@ class X264Output(Output, ClsMod):
       , '': ''
       })
     base = ('--no-progress --quiet --input-depth 16 --sync-lookahead 0 '
-            '--rc-lookahead 5 --muxer raw -o - -')
+            '--rc-lookahead 5 --muxer mp4 -o /dev/stdout -')
 
     def __init__(self, profile='normal', csp='i444', crf=10,
                  command='x264', fps=60, x264opts='', alpha=False):
@@ -424,7 +424,7 @@ def get_output_for_profile(gprof):
     elif handler == 'tiff':
         return TiffOutput(**opts)
     elif handler == 'x264':
-        return X264Output(**opts)
+        return X264Output(fps=gprof.fps, **opts)
     elif handler == 'vp8':
         return VPxOutput(codec='vp8', fps=gprof.fps, **opts)
     elif handler == 'vp9':

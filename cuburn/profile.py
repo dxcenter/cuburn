@@ -8,6 +8,7 @@ from genome.use import RefWrapper, SplineWrapper
 import output
 
 BUILTIN={
+    '4k': dict(width=3840, height=2160),
     '1080p': dict(width=1920, height=1080),
     '720p': dict(width=1280, height=720),
     '540p': dict(width=960, height=540),
