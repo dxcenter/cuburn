@@ -91,7 +91,7 @@ class PILOutput(Output, ClsMod):
         import scipy.misc
         out = StringIO()
         img = scipy.misc.toimage(buf, cmin=0, cmax=1)
-        img.save(out, self.type, quality=self.quality, compress_level=0)
+        img.save(out, self.type, quality=self.quality, compress_level=1)
         out.seek(0)
         return out
 
@@ -200,7 +200,7 @@ class X264Output(Output, ClsMod):
                  command='x264', fps=60, x264opts='', alpha=False):
         super(X264Output, self).__init__()
         self.args = ' '.join([command, self.base, self.profiles[profile],
-                              '--crf', str(crf), '--fps', str(fps), x264opts]).split()
+                              '--crf', str(crf), '--preset', 'ultrafast', '--fps', str(fps), x264opts]).split()
         self.alpha = alpha
         self.csp = csp
         self.framesize = None
